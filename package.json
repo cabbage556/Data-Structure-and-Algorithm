@@ -1,0 +1,13 @@
+{
+    "name": "datastructure-algorithm",
+    "version": "1.0.0",
+    "description": "자료 구조와 알고리즘 공부 레포지토리",
+    "main": "index.js",
+    "type": "commonjs",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
