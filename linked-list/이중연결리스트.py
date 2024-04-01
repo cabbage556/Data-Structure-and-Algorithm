@@ -41,3 +41,31 @@ class DoublyLinkedList:
         self.head.prev_node = None
 
         return deleted_node
+
+    # 이중 연결 리스트 내 모든 노드의 값을 거꾸로 출력하는 메서드
+    def print_all_nodes_from_tail(self):
+        # 마지막 노드부터 시작
+        current_node = self.tail
+
+        # 이중 연결 리스트 내 시작 노드까지 이동
+        while current_node:
+            # 순회 중인 노드의 값 출력
+            print(current_node.data)
+
+            # 이전 노드로 이동
+            current_node = current_node.prev_node
+
+
+# 이중 연결 리스트 인스턴스 생성
+doubly_linked_list = DoublyLinkedList()
+
+# 이중 연결 리스트에 노드 추가
+doubly_linked_list.insert_at_end("a")
+doubly_linked_list.insert_at_end("b")
+doubly_linked_list.insert_at_end("c")
+doubly_linked_list.insert_at_end("d")
+
+# 거꾸로 출력
+print("-------------모든 노드의 값 거꾸로 출력 시작--------------")
+doubly_linked_list.print_all_nodes_from_tail()
+print("-------------모든 노드의 값 거꾸로 출력 끝--------------")
