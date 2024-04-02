@@ -7,27 +7,36 @@ from 이중연결리스트 import DoublyLinkedList
 #       리스트 시작에서 삭제: O(1)
 class Queue:
     def __init__(self):
-        self.data = DoublyLinkedList()
+        self.doubly_ll = DoublyLinkedList()
 
     def enqueue(self, value):
-        self.data.insert_at_end(value)
+        self.doubly_ll.insert_at_end(value)
 
     def dequeue(self):
-        removed_node = self.data.delete_from_front()
-        return removed_node.data
-
-    def read(self):
-        if self.data.head is None:
+        deleted_node = self.doubly_ll.delete_from_front()
+        if deleted_node is None:
             return None
 
-        return self.data.head.data
+        return deleted_node.data
+
+    def read(self):
+        if self.doubly_ll.head is None:
+            return None
+
+        return self.doubly_ll.head.data
 
 
 q = Queue()
+print(q.read())  # None
+
 q.enqueue('a')
 q.enqueue('b')
 
-print(q.read())  # a
-
+print(q.read())     # a
 print(q.dequeue())  # a
-print(q.read())  # b
+print(q.read())     # b
+print(q.dequeue())  # b
+
+print(q.read())          # None
+print(q.doubly_ll.head)  # None
+print(q.doubly_ll.tail)  # None

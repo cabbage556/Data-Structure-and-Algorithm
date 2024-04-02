@@ -18,6 +18,7 @@ class DoublyLinkedList:
 
     # 이중 연결 리스트 마지막에 삽입하는 메서드
     def insert_at_end(self, value):
+        # 새 노드 생성
         new_node = Node(value)
 
         # 연결 리스트에 노드가 없는 경우
@@ -32,14 +33,27 @@ class DoublyLinkedList:
 
     # 이중 연결 리스트 시작에서 삭제하는 메서드
     def delete_from_front(self):
-        # 시작 노드 제거
-        deleted_node = self.head
-        self.head = self.head.next_node  # 현재 시작 노드의 다음 노드가 시작 노드가 되게 함
+        # 시작 노드가 None인 경우 예외 처리
+        if self.head is None:
+            return None
 
-        # 제거하는 노드와 시작 노드의 연결을 끊음
+        deleted_node = self.head   # 삭제하는 노드
+        node_after_deleted_node = deleted_node.next_node  # 삭제하는 노드의 다음 노드
+
+        # 다음 노드가 None인 경우 예외 처리
+        if node_after_deleted_node is None:
+            self.head = None
+            self.tail = None
+            return deleted_node
+
+        # 삭제하는 노드와 연결 끊기
+        node_after_deleted_node.prev_node = None
         deleted_node.next_node = None
-        self.head.prev_node = None
 
+        # 시작 노드 초기화
+        self.head = node_after_deleted_node
+
+        # 제거한 노드 리턴
         return deleted_node
 
     # 이중 연결 리스트 내 모든 노드의 값을 거꾸로 출력하는 메서드
