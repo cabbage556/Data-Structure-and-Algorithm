@@ -11,32 +11,37 @@ class Queue:
 
     def enqueue(self, value):
         self.doubly_ll.insert_at_end(value)
+        return
 
     def dequeue(self):
         deleted_node = self.doubly_ll.delete_from_front()
-        if deleted_node is None:
-            return None
-
-        return deleted_node.data
+        return deleted_node.value if deleted_node else None
 
     def read(self):
-        if self.doubly_ll.head is None:
-            return None
-
-        return self.doubly_ll.head.data
+        return self.doubly_ll.head.value if self.doubly_ll.head else None
 
 
 q = Queue()
-print(q.read())  # None
+
+print("============== 이중 연결 리스트 기반 큐 ==============")
+print("==============  ==============")
+print("read:", q.read())
+print()
 
 q.enqueue('a')
 q.enqueue('b')
 
-print(q.read())     # a
-print(q.dequeue())  # a
-print(q.read())     # b
-print(q.dequeue())  # b
+print("============== [a], [b] ==============")
+print("read:", q.read())
+print("dequeue:", q.dequeue())
+print()
 
-print(q.read())          # None
-print(q.doubly_ll.head)  # None
-print(q.doubly_ll.tail)  # None
+print("============== [b] ==============")
+print("read:", q.read())
+print("dequeue:", q.dequeue())
+print()
+
+print("==============  ==============")
+print("read:", q.read())
+print("dequeue:", q.dequeue())
+print()
