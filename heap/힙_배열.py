@@ -132,13 +132,13 @@ class Heap:
 
         return deleted_node
 
-    # 두 자식 노드가 있는지, index에 위치한 노드보다 큰 값을 갖는지 확인
+    # 두 자식 노드가 있는지, 있다면 트리클 노드보다 큰 값을 갖는지 확인
     def has_greater_child(self, index):
         left_child_idx = self.get_left_child_index(index)
         right_child_idx = self.get_right_child_index(index)
 
-        return ((left_child_idx < len(self.data) and self.data[left_child_idx] and self.data[left_child_idx] > self.data[index]) or
-                (right_child_idx < len(self.data) and self.data[right_child_idx] and self.data[right_child_idx] > self.data[index]))
+        return ((left_child_idx < len(self.data) and self.data[left_child_idx] > self.data[index]) or
+                (right_child_idx < len(self.data) and self.data[right_child_idx] > self.data[index]))
 
     # 두 자식 노드 중 더 큰 값을 갖는 자식 노드의 인덱스 반환
     def get_larger_child_index(self, index):
