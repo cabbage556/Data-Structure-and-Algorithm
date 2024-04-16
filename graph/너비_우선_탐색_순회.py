@@ -1,34 +1,31 @@
 from 정점 import Vertex
+from collections import deque
 
 
-# 깊이 우선 탐색(Depth-First Search)
-#   그래프 탐색 시 시작 정점과 멀리 떨어진 정점들부터 탐색하고 싶은 경우 깊이 우선 탐색을 사용하는 것이 좋음
-#   시간 복잡도: O(V + E)
-#       V: 정점 수
-#       E: 간선 수
-def dfs(vertex, search_val, visited=dict()):
-    # 정점을 찾았으면 정점 리턴
-    if search_val == vertex.val:
-        return vertex
+# 너비 우선 탐색(BFS) 그래프 순회
+def bfs_traverse(vertex):
+    q = deque([])     # BFS에 사용할 큐 생성
+    visited = dict()  # 방문 기록을 저장하기 위한 해시 테이블 생성
 
-    # 현재 정점 방문 표시
-    visited[vertex.val] = True
+    visited[vertex.val] = True  # 현재 정점에 방문 표시
+    q.append(vertex)            # 큐에 현재 정점 추가
 
-    # 인접 정점 순회
-    for adjacent in vertex.adjacent_vertices:
-        # 이미 방문했다면 무시함
-        if visited.get(adjacent.val):
-            continue
+    # 큐가 빌 때까지 while 루프 실행
+    while q:
+        current_vtx = q.popleft()  # 현재 정점
+        print(current_vtx.val)
 
-        # 방문하지 않았으면 dfs 재귀 호출
-        vertex_were_searching_for = dfs(adjacent, search_val, visited)
+        # 현재 정점의 인접 정점 순회
+        for adjacent in current_vtx.adjacent_vertices:
+            # 이미 방문했다면 무시함
+            if visited.get(adjacent.val):
+                continue
 
-        # 재귀 호출 결과 정점이 있으면 해당 정점 리턴
-        if vertex_were_searching_for:
-            return vertex_were_searching_for
+            # 방문하지 않았다면 방문 표시 후 큐에 추가
+            visited[adjacent.val] = True
+            q.append(adjacent)
 
-    # 찾지 못했다면 None 리턴
-    return None
+    return
 
 
 # 정점 생성
@@ -79,14 +76,5 @@ helen.add_adjacent_vertex_in_undirected_graph(candy)
 # 이레나 인접 정점 추가
 irena.add_adjacent_vertex_in_undirected_graph(gina)
 
-# 깊이 우선 탐색(DFS)
-print("========== 깊이 우선 탐색 ==========")
-searched_vertex = dfs(alice, "Fred")
-print("Fred 탐색:", searched_vertex.val)
-
-searched_vertex = dfs(alice, "Irena")
-print("Irena 탐색:", searched_vertex.val)
-
-searched_vertex = dfs(alice, "Apple")
-print("Apple 탐색:", searched_vertex.val if searched_vertex else None)
-
+print("========== 너비 우선 탐색 순회 ==========")
+bfs_traverse(alice)
