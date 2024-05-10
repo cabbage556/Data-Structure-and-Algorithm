@@ -1,15 +1,18 @@
+import random
 from 힙_배열 import Heap
 
-# 힙 정렬
-#   모든 값을 힙에 삽입하고, 하나씩 제거하면 항상 정렬된 순서로 값이 제거됨
-#   최대 힙의 경우: 내림차순 정렬
-#   최소 힙의 경우: 오름차순 정렬
+"""
+    힙 정렬
+        모든 값을 힙에 삽입하고 하나씩 제거하면 항상 정렬된 순서로 값이 제거됨
+        최대 힙 : 내림차순 정렬
+        최소 힙 : 오름차순 정렬
+"""
 
 # 최대 힙
 max_heap = Heap()
 
 # 배열 순서대로 최대 힙에 삽입
-before = [55, 22, 34, 10, 2, 99, 68]
+before = [random.randint(1, 100) for _ in range(10)]
 for num in before:
     max_heap.insert(num)
 
@@ -19,10 +22,12 @@ for num in before:
 after = list()
 for _ in range(len(before)):
     after.append(max_heap.delete())
+
+print("before:", before)
 print("after:", after)
 
 # 배열 순서대로 최대 힙에 삽입
-before = [55, 22, 34, 10]
+before = [random.randint(1, 100) for _ in range(10)]
 for num in before:
     max_heap.insert(num)
 
@@ -31,4 +36,6 @@ for num in before:
 after = list()
 for _ in range(len(before)):
     after.append(max_heap.delete())
+
+print("before:", before)
 print("after:", after)
